@@ -33,9 +33,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
       - name: Create /docs folder
         run: |
-          ls -al
           mv ./public ./docs
       - name: Deploy to GitHub Pages
         id: deployment
