@@ -8,6 +8,25 @@ jobs:
   receiver:
     runs-on: ubuntu-latest
     steps:
-      - name: A event received
+      - name: Set current time
         run: |
-          echo "payload Foo '${{ github.event.client_payload.foo }}'"
+          echo "CURRENT_TIME_WITH_TZ=$(date +%Y%m%d_%H%M%S_%Z)" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+      - name: Checkout Hugowebsite code
+        uses: actions/checkout@v3
+        with:
+          repository: 'KizmetSolutions/website_poc'
+          path: ./private_public
+      - name: Copy build from private repository
+        run: |
+          cp ./private_public/andromeda-light/exampleSite/public/ .
+      - name: Save commit
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+          git add .
+          git commit -m "Public build on $CURRENT_TIME_WITH_TZ"
+          git push -u origin main
