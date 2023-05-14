@@ -35,6 +35,7 @@ jobs:
     steps:
       - name: Create /docs folder
         run: |
+          ls -al
           mv ./public ./docs
       - name: Deploy to GitHub Pages
         id: deployment
