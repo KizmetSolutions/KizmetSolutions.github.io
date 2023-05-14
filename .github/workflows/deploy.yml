@@ -40,7 +40,6 @@ jobs:
       - name: Create /docs folder
         run: |
           mv ./public ./docs
-            - name: Upload artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
