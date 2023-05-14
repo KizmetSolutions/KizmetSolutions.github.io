@@ -20,6 +20,7 @@ jobs:
         with:
           repository: 'KizmetSolutions/website_poc'
           path: ./private_public
+          ref: 'main'
       - name: Copy build from private repository
         run: |
           cp ./private_public/andromeda-light/exampleSite/public/ .
