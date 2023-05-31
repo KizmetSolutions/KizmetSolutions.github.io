@@ -1,2 +1,2 @@
 # Information
-Public website information
+Public website information.
